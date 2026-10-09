@@ -106,12 +106,6 @@
 
     try {
       const roomRef = db.ref("rooms/" + code);
-      const snap = await roomRef.once("value");
-
-      if (!snap.exists()) {
-        note("Yeh room nahi mila. Code dobara check karo.");
-        return;
-      }
 
       await roomRef.child("players/" + user.uid).set({
         name: document.getElementById("playerName").value.trim(),
@@ -121,6 +115,7 @@
       myRoom = code;
       document.getElementById("roomCode").textContent = code;
       if (typeof show === "function") show("room");
+      
 
       roomRef.child("players").on("value", snapshot => {
         const players = snapshot.val() || {};
