@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101126">
+<title>DostBattle — Friends Challenge</title>
+<style>
+:root{--bg:#101126;--panel:#1b1d3b;--panel2:#24264a;--text:#f7f7ff;--muted:#b8bbdc;--pink:#ff4fa3;--cyan:#51e5ff;--gold:#ffd166;--green:#68e6a6}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#25204d 0,#101126 55%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padding:13px 16px;font-weight:800;color:#101126;background:linear-gradient(110deg,var(--cyan),#9af5e3);box-shadow:0 7px 20px #0003}button.secondary{background:var(--panel2);color:var(--text);border:1px solid #454873;box-shadow:none}button.pink{background:linear-gradient(110deg,var(--pink),#ff9bce);color:#260c21}button:disabled{opacity:.5;cursor:not-allowed}
+.wrap{max-width:520px;margin:auto;padding:18px 15px 35px}.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:10px}.logo{display:grid;place-items:center;width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,var(--pink),#795bff);font-size:23px;box-shadow:0 5px 22px #ff4fa344}.brand h1{font-size:20px;margin:0;letter-spacing:-.5px}.brand small{color:var(--muted)}select{max-width:125px;background:var(--panel);color:var(--text);border:1px solid #454873;border-radius:12px;padding:9px}
+.hero{padding:23px 19px;border:1px solid #47416c;border-radius:25px;background:linear-gradient(135deg,#32245c,#202448 65%,#1b2c4b);position:relative;overflow:hidden}.hero:after{content:"⚡";position:absolute;right:10px;top:0;font-size:100px;opacity:.1;transform:rotate(15deg)}.eyebrow{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}.hero h2{font-size:31px;line-height:1.1;margin:10px 0}.hero p{color:var(--muted);margin:0 0 18px;max-width:300px}.row{display:flex;gap:10px}.row>*{flex:1}.field{display:block;width:100%;background:#11132b;border:1px solid #484b78;border-radius:13px;color:var(--text);padding:13px;margin:7px 0 12px;outline:none}.section-title{display:flex;align-items:center;justify-content:space-between;margin:23px 2px 12px}.section-title h3{margin:0;font-size:17px}.section-title span{font-size:12px;color:var(--muted)}.cards{display:grid;grid-template-columns:1fr 1fr;gap:11px}.mode{padding:15px;text-align:left;background:var(--panel);border:1px solid #393d67;color:var(--text);box-shadow:none;border-radius:19px;min-height:130px}.mode .emoji{font-size:29px;display:block;margin-bottom:8px}.mode b{display:block;font-size:15px}.mode small{display:block;color:var(--muted);font-weight:500;margin-top:5px}.panel{background:var(--panel);border:1px solid #373a64;border-radius:21px;padding:17px;margin-top:13px}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}.roomcode{font-size:28px;letter-spacing:5px;font-weight:950;color:var(--gold);text-align:center;padding:8px}.center{text-align:center}.pill{display:inline-block;border-radius:999px;background:#30335a;color:var(--cyan);padding:6px 10px;font-size:12px;font-weight:800}.quiztop{display:flex;justify-content:space-between;align-items:center;gap:10px}.progress{height:7px;background:#343656;border-radius:10px;overflow:hidden;margin:15px 0}.progress div{height:100%;background:linear-gradient(90deg,var(--pink),var(--cyan));width:0%;transition:width .25s}.question{font-size:22px;font-weight:850;line-height:1.25;margin:18px 0}.answers{display:grid;gap:10px}.answer{background:#25284c;border:1px solid #474b79;color:var(--text);box-shadow:none;text-align:left;display:flex;align-items:center;gap:11px}.answer .letter{display:grid;place-items:center;min-width:30px;height:30px;background:#383b66;border-radius:9px}.answer.correct{background:#174d43;border-color:var(--green)}.answer.wrong{background:#5a263f;border-color:var(--pink)}.foot{display:flex;justify-content:space-between;align-items:center;margin-top:15px;color:var(--muted);font-size:13px}.score{font-size:54px;font-weight:950;line-height:1;color:var(--gold);margin:10px 0}.rankrow{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #36395d}.rankrow:last-child{border:0}.rank{color:var(--gold);font-weight:900;width:30px}.notice{font-size:12px;color:#ffdf9b;background:#3b2c32;padding:10px 12px;border-radius:12px;margin-top:13px;line-height:1.4}.bottom{margin-top:25px;text-align:center;color:#8589b4;font-size:11px}
+@media(min-width:480px){.hero h2{font-size:36px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">⚔️</div><div><h1>DostBattle</h1><small id="tagline">Khelo • Challenge karo • Share karo</small></div></div>
+    <select id="lang" aria-label="Language"><option value="hi">हिन्दी</option><option value="as">অসমীয়া</option><option value="en">English</option></select>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="eyebrow" id="eyebrow">FRIENDS CHALLENGE ARENA</div>
+      <h2 id="heroTitle">Doston ko harao.<br>Apna naam banao.</h2>
+      <p id="heroDesc">Quick quiz battles, funny challenges aur score sharing — sab ek jagah.</p>
+      <label class="small" id="nameLabel" for="playerName">Aapka player name</label>
+      <input class="field" id="playerName" maxlength="18" placeholder="Jaise: QuizKing" value="">
+      <div class="row"><button id="quickStart">⚡ <span id="quickText">Quick Quiz</span></button><button class="secondary" id="makeRoom">＋ <span id="createText">Room banao</span></button></div>
+    </section>
+    <div class="section-title"><h3 id="modesTitle">Game modes</h3><span id="modesSub">Apna battle chuno</span></div>
+    <div class="cards">
+      <button class="mode" id="quizMode"><span class="emoji">🧠</span><b id="quizName">Quiz Battle</b><small id="quizDesc">10 sawal • Points</small></button>
+      <button class="mode" id="funMode"><span class="emoji">😂</span><b id="funName">Funny Challenge</b><small id="funDesc">Dare, act aur guess</small></button>
+      <button class="mode" id="joinRoom"><span class="emoji">🔑</span><b id="joinName">Room join karo</b><small id="joinDesc">Code daal kar doston se judo</small></button>
+      <button class="mode" id="leaderBtn"><span class="emoji">🏆</span><b id="leaderName">Leaderboard</b><small id="leaderDesc">Apne scores dekho</small></button>
+    </div>
+    <section class="panel">
+      <div class="section-title" style="margin:0 0 8px"><h3 id="dailyTitle">🔥 Aaj ka challenge</h3><span class="pill" id="dailyPill">Daily</span></div>
+      <p id="dailyText" style="margin:7px 0 14px">10 seconds mein 5 jaanwaron ke naam bolo. Dost ko bhi try karwao!</p>
+      <button class="pink" id="shareDaily">↗ <span id="shareDailyText">Challenge share karo</span></button>
+    </section>
+    <div class="notice" id="demoNotice">Prototype note: room code abhi demo hai. Alag phones ke beech live multiplayer abhi connected nahi hai.</div>
+  </main>
+
+  <main id="room" class="hidden">
+    <button class="secondary" id="backRoom">← <span data-i="back">Home</span></button>
+    <section class="panel center">
+      <div class="eyebrow" id="roomEyebrow">FRIEND ROOM</div><h2 id="roomTitle">Doston ko bulao!</h2><p class="muted" id="roomDescText">Is code ko share karo aur quiz shuru karo.</p>
+      <div class="roomcode" id="roomCode">DB-4821</div>
+      <div class="row"><button id="copyCode">⧉ <span id="copyText">Code copy</span></button><button class="secondary" id="shareRoom">↗ <span id="shareRoomText">Share</span></button></div>
+      <label for="joinCode" class="small" id="joinCodeLabel">Friend ka room code</label><input class="field" id="joinCode" placeholder="DB-1234" maxlength="12">
+      <button class="secondary" style="width:100%" id="submitJoin">Join demo room</button>
+      <p class="small" id="roomDemoNote">Demo mein har device apna local game chalata hai.</p>
+      <button class="pink" style="width:100%;margin-top:10px" id="roomStart">Start quiz ⚡</button>
+    </section>
+  </main>
+
+  <main id="quiz" class="hidden">
+    <button class="secondary" id="quitQuiz">← <span data-i="home">Home</span></button>
+    <section class="panel">
+      <div class="quiztop"><span class="pill" id="quizModeLabel">QUIZ BATTLE</span><b>⏱ <span id="timer">15</span>s</b></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="foot"><span id="questionCount">Question 1/10</span><span>⭐ <b id="liveScore">0</b></span></div>
+      <div class="question" id="questionText">Loading question...</div>
+      <div class="answers" id="answers"></div>
+      <div class="foot"><span id="feedback"></span><span id="pointsText">+10 points</span></div>
+      <button id="nextQuestion" class="pink hidden" style="width:100%;margin-top:17px">Next →</button>
+    </section>
+  </main>
+
+  <main id="result" class="hidden">
+    <button class="secondary" id="backResult">← <span data-i="home">Home</span></button>
+    <section class="panel center">
+      <div style="font-size:52px">🏆</div><h2 id="resultTitle">Battle complete!</h2><div class="score" id="finalScore">0</div><div class="muted" id="resultOf">out of 100 points</div>
+      <p id="resultMessage">Nice try!</p>
+      <div class="row"><button id="shareScore">↗ <span id="shareScoreText">Score share karo</span></button><button class="secondary" id="playAgain">↻ <span id="againText">Phir khelo</span></button></div>
+    </section>
+  </main>
+
+  <main id="leaderboard" class="hidden">
+    <button class="secondary" id="backLeader">← <span data-i="home">Home</span></button>
+    <section class="panel"><h2 id="leaderTitle">🏆 Leaderboard</h2><p class="muted" id="leaderSubtitle">Is device par khele gaye scores</p><div id="leaderRows"></div><button id="clearScores" class="secondary" style="width:100%;margin-top:14px">Reset local scores</button></section>
+  </main>
+
+  <main id="funny" class="hidden">
+    <button class="secondary" id="backFunny">← <span data-i="home">Home</span></button>
+    <section class="panel center"><div style="font-size:48px">😂</div><h2 id="funnyTitle">Funny Challenge</h2><p id="challengeText" style="font-size:22px;font-weight:800">Challenge loading…</p><p class="muted" id="funnySub">Dost ko bhi ye challenge bhejo.</p><button id="newChallenge" style="width:100%">🎲 <span id="newChallengeText">Naya challenge</span></button><button class="pink" id="shareChallenge" style="width:100%;margin-top:10px">↗ <span id="shareChallengeText">Share challenge</span></button></section>
+  </main>
+  <footer class="bottom">DostBattle MVP • Made for friends 💜</footer>
+</div>
+<script>
+const translations={
+hi:{tagline:"Khelo • Challenge karo • Share karo",eyebrow:"FRIENDS CHALLENGE ARENA",heroTitle:"Doston ko harao.<br>Apna naam banao.",heroDesc:"Quick quiz battles, funny challenges aur score sharing — sab ek jagah.",nameLabel:"Aapka player name",namePlaceholder:"Jaise: QuizKing",quickText:"Quick Quiz",createText:"Room banao",modesTitle:"Game modes",modesSub:"Apna battle chuno",quizName:"Quiz Battle",quizDesc:"10 sawal • Points",funName:"Funny Challenge",funDesc:"Dare, act aur guess",joinName:"Room join karo",joinDesc:"Code daal kar doston se judo",leaderName:"Leaderboard",leaderDesc:"Apne scores dekho",dailyTitle:"🔥 Aaj ka challenge",dailyPill:"Daily",dailyText:"10 seconds mein 5 jaanwaron ke naam bolo. Dost ko bhi try karwao!",shareDailyText:"Challenge share karo",demoNotice:"Prototype note: room code abhi demo hai. Alag phones ke beech live multiplayer abhi connected nahi hai.",back:"Home",home:"Home",roomEyebrow:"FRIEND ROOM",roomTitle:"Doston ko bulao!",roomDescText:"Is code ko share karo aur quiz shuru karo.",copyText:"Code copy",shareRoomText:"Share",joinCodeLabel:"Friend ka room code",joinPlaceholder:"DB-1234",submitJoin:"Join demo room",roomDemoNote:"Demo mein har device apna local game chalata hai.",roomStart:"Quiz shuru karo ⚡",quizModeLabel:"QUIZ BATTLE",question:"Sawal",of:"/",points:"points",next:"Agla sawal →",resultTitle:"Battle complete!",resultOf:"mein se 100 points",resultMessage:"Achhi koshish!",shareScoreText:"Score share karo",againText:"Phir khelo",leaderTitle:"🏆 Leaderboard",leaderSubtitle:"Is device par khele gaye scores",clearScores:"Local scores reset karo",funnyTitle:"Funny Challenge",funnySub:"Dost ko bhi ye challenge bhejo.",newChallengeText:"Naya challenge",shareChallengeText:"Challenge share karo",correct:"Sahi jawab! +10",wrong:"Galat jawab!",timeup:"Time khatam!",noScore:"Abhi koi score nahi. Pehla battle khelo!",copyDone:"Code copy ho gaya (agar browser ne allow kiya).",roomJoined:"Demo room code set ho gaya.",shareFallback:"Share option available nahi; text copy kar sakte hain.",enterName:"Pehle apna player name likho.",enterCode:"Room code daalo.",nice:"Zabardast! Tum quiz champion ho.",good:"Achha khela! Ek aur round try karo.",keep:"Practice karo — next battle tumhara hai!",questionCount:"Sawal",player:"Player"},
+as:{tagline:"খেলা • Challenge • Share",eyebrow:"FRIENDS CHALLENGE ARENA",heroTitle:"বন্ধুক হৰুৱাও।<br>নিজৰ নাম বনাও।",heroDesc:"দ্ৰুত quiz battle, মজাৰ challenge আৰু score share — সকলো একে ঠাইত।",nameLabel:"আপোনাৰ player name",namePlaceholder:"যেনে: QuizKing",quickText:"Quick Quiz",createText:"Room বনাওক",modesTitle:"Game modes",modesSub:"নিজৰ battle বাছক",quizName:"Quiz Battle",quizDesc:"১০টা প্ৰশ্ন • Points",funName:"Funny Challenge",funDesc:"Dare, act আৰু guess",joinName:"Room join কৰক",joinDesc:"Code দি বন্ধুৰ সৈতে যোগ দিয়ক",leaderName:"Leaderboard",leaderDesc:"নিজৰ score চাওক",dailyTitle:"🔥 আজিৰ challenge",dailyPill:"Daily",dailyText:"১০ ছেকেণ্ডত ৫টা জন্তুৰ নাম কওক। বন্ধুকো চেষ্টা কৰিবলৈ দিয়ক!",shareDailyText:"Challenge share কৰক",demoNotice:"Prototype টোকা: room code এতিয়া demo। পৃথক ফোনৰ মাজত live multiplayer এতিয়াও সংযুক্ত নহয়।",back:"Home",home:"Home",roomEyebrow:"FRIEND ROOM",roomTitle:"বন্ধুক মাতক!",roomDescText:"এই code share কৰি quiz আৰম্ভ কৰক।",copyText:"Code copy",shareRoomText:"Share",joinCodeLabel:"বন্ধুৰ room code",joinPlaceholder:"DB-1234",submitJoin:"Join demo room",roomDemoNote:"Demo-ত প্ৰতিটো device-ত নিজা local game চলে।",roomStart:"Quiz আৰম্ভ কৰক ⚡",quizModeLabel:"QUIZ BATTLE",question:"প্ৰশ্ন",of:"/",points:"points",next:"পৰৱৰ্তী →",resultTitle:"Battle শেষ!",resultOf:"১০০ points-ৰ ভিতৰত",resultMessage:"ভাল চেষ্টা!",shareScoreText:"Score share কৰক",againText:"আকৌ খেলক",leaderTitle:"🏆 Leaderboard",leaderSubtitle:"এই device-ত খেলা score",clearScores:"Local score reset",funnyTitle:"Funny Challenge",funnySub:"বন্ধুকো এই challenge পঠিয়াওক।",newChallengeText:"নতুন challenge",shareChallengeText:"Challenge share",correct:"শুদ্ধ উত্তৰ! +10",wrong:"ভুল উত্তৰ!",timeup:"সময় শেষ!",noScore:"এতিয়াও score নাই। প্ৰথম battle খেলক!",copyDone:"Code copy হ'ল (browser-এ অনুমতি দিলে)।",roomJoined:"Demo room code set হ'ল।",shareFallback:"Share option নাই; text copy কৰিব পাৰে।",enterName:"আগতে player name লিখক।",enterCode:"Room code দিয়ক।",nice:"দাৰুণ! আপুনি quiz champion।",good:"ভাল খেলিলে! আকৌ চেষ্টা কৰক।",keep:"অনুশীলন কৰক — পৰৱৰ্তী battle আপোনাৰ!",questionCount:"প্ৰশ্ন",player:"Player"},
+en:{tagline:"Play • Challenge • Share",eyebrow:"FRIENDS CHALLENGE ARENA",heroTitle:"Beat your friends.<br>Make your name.",heroDesc:"Quick quiz battles, funny challenges and score sharing — all in one place.",nameLabel:"Your player name",namePlaceholder:"e.g. QuizKing",quickText:"Quick Quiz",createText:"Create room",modesTitle:"Game modes",modesSub:"Choose your battle",quizName:"Quiz Battle",quizDesc:"10 questions • Points",funName:"Funny Challenge",funDesc:"Dare, act and guess",joinName:"Join a room",joinDesc:"Enter a code to connect",leaderName:"Leaderboard",leaderDesc:"See your scores",dailyTitle:"🔥 Today's challenge",dailyPill:"Daily",dailyText:"Name 5 animals in 10 seconds. Challenge a friend too!",shareDailyText:"Share challenge",demoNotice:"Prototype note: room codes are demo-only. Live multiplayer between separate phones is not connected yet.",back:"Home",home:"Home",roomEyebrow:"FRIEND ROOM",roomTitle:"Invite your friends!",roomDescText:"Share this code and start a quiz.",copyText:"Copy code",shareRoomText:"Share",joinCodeLabel:"Friend's room code",joinPlaceholder:"DB-1234",submitJoin:"Join demo room",roomDemoNote:"In this demo, each device runs its own local game.",roomStart:"Start quiz ⚡",quizModeLabel:"QUIZ BATTLE",question:"Question",of:"/",points:"points",next:"Next →",resultTitle:"Battle complete!",resultOf:"out of 100 points",resultMessage:"Nice try!",shareScoreText:"Share score",againText:"Play again",leaderTitle:"🏆 Leaderboard",leaderSubtitle:"Scores played on this device",clearScores:"Reset local scores",funnyTitle:"Funny Challenge",funnySub:"Send this challenge to a friend too.",newChallengeText:"New challenge",shareChallengeText:"Share challenge",correct:"Correct! +10",wrong:"Wrong answer!",timeup:"Time's up!",nice:"Amazing! You're the quiz champion.",good:"Well played! Try another round.",keep:"Keep practising — next battle is yours!",noScore:"No scores yet. Play your first battle!",copyDone:"Code copied (if your browser allowed it).",roomJoined:"Demo room code set.",shareFallback:"Share isn't available; you can copy the text.",enterName:"Enter your player name first.",enterCode:"Enter a room code.",questionCount:"Question",player:"Player"}
+};
+const bank={
+hi:[
+["भारत की राजधानी क्या है?",["मुंबई","नई दिल्ली","जयपुर","लखनऊ"],1],
+["एक सप्ताह में कितने दिन होते हैं?",["5","6","7","8"],2],
+["लाल और पीला मिलाने पर आम तौर पर कौन-सा रंग बनता है?",["हरा","बैंगनी","नारंगी","नीला"],2],
+["सौरमंडल का सबसे बड़ा ग्रह कौन-सा है?",["मंगल","पृथ्वी","शुक्र","बृहस्पति"],3],
+["2 दर्जन में कितनी चीज़ें होती हैं?",["12","18","24","36"],2],
+["कंप्यूटर का दिमाग किसे कहा जाता है?",["CPU","माउस","स्क्रीन","कीबोर्ड"],0],
+["पानी का रासायनिक सूत्र क्या है?",["CO₂","H₂O","O₂","NaCl"],1],
+["भारत का राष्ट्रीय पशु कौन है?",["शेर","हाथी","बाघ","मोर"],2],
+["एक घंटे में कितने मिनट होते हैं?",["30","45","60","100"],2],
+["पृथ्वी किसके चारों ओर घूमती है?",["चंद्रमा","सूर्य","मंगल","ध्रुव तारा"],1]],
+as:[
+["ভাৰতৰ ৰাজধানী কি?",["মুম্বাই","নতুন দিল্লী","জয়পুৰ","লক্ষ্ণৌ"],1],
+["এটা সপ্তাহত কেইদিন থাকে?",["৫","৬","৭","৮"],2],
+["ৰঙা আৰু হালধীয়া মিহলালে সাধাৰণতে কি ৰং হয়?",["সেউজীয়া","বেঙুনীয়া","কমলা","নীলা"],2],
+["সৌৰজগতৰ আটাইতকৈ ডাঙৰ গ্ৰহ কোনটো?",["মংগল","পৃথিৱী","শুক্ৰ","বৃহস্পতি"],3],
+["২ ডজনত কিমানটা বস্তু থাকে?",["১২","১৮","২৪","৩৬"],2],
+["কম্পিউটাৰৰ মগজু বুলি কাক কোৱা হয়?",["CPU","মাউছ","স্ক্ৰীন","কীব'ৰ্ড"],0],
+["পানীৰ ৰাসায়নিক সংকেত কি?",["CO₂","H₂O","O₂","NaCl"],1],
+["ভাৰতৰ ৰাষ্ট্ৰীয় জন্তু কোনটো?",["সিংহ","হাতী","বাঘ","ময়ূৰ"],2],
+["এঘণ্টাত কিমান মিনিট থাকে?",["৩০","৪৫","৬০","১০০"],2],
+["পৃথিৱী কিহৰ চাৰিওফালে ঘূৰে?",["চন্দ্ৰ","সূৰ্য","মংগল","ধ্ৰুৱ তৰা"],1]],
+en:[
+["What is the capital of India?",["Mumbai","New Delhi","Jaipur","Lucknow"],1],
+["How many days are in a week?",["5","6","7","8"],2],
+["Red and yellow paint usually make which color?",["Green","Purple","Orange","Blue"],2],
+["Which is the largest planet in our solar system?",["Mars","Earth","Venus","Jupiter"],3],
+["How many items are in two dozen?",["12","18","24","36"],2],
+["Which part is often called the brain of a computer?",["CPU","Mouse","Monitor","Keyboard"],0],
+["What is the chemical formula for water?",["CO₂","H₂O","O₂","NaCl"],1],
+["What is India's national animal?",["Lion","Elephant","Tiger","Peacock"],2],
+["How many minutes are in one hour?",["30","45","60","100"],2],
+["Earth revolves around which object?",["The Moon","The Sun","Mars","Polaris"],1]]
+};
+const funny={
+hi:["बिना हँसे 10 सेकंड तक 'आलू पराठा' बोलो।","10 सेकंड में 5 जानवरों की आवाज़ निकालो।","किसी दोस्त की मज़ेदार लेकिन प्यार भरी mimicry करो।","30 सेकंड तक रोबोट की तरह बात करो।","बिना हाथ लगाए अपना सबसे funny चेहरा बनाओ।","10 सेकंड में 5 फल के नाम बोलो।"],
+as:["১০ ছেকেণ্ড হাঁহি নোহোৱাকৈ 'আলু পৰাঠা' কওক।","১০ ছেকেণ্ডত ৫টা জন্তুৰ মাত উলিয়াওক।","বন্ধুৰ মৰমলগা মজাৰ অনুকৰণ কৰক।","৩০ ছেকেণ্ড ৰবটৰ দৰে কথা কওক।","হাত নলগোৱাকৈ আটাইতকৈ মজাৰ মুখখন বনাওক।","১০ ছেকেণ্ডত ৫টা ফলৰ নাম কওক।"],
+en:["Say 'potato paratha' for 10 seconds without laughing.","Make 5 animal sounds in 10 seconds.","Do a funny but kind impression of a friend.","Talk like a robot for 30 seconds.","Make your funniest face without using your hands.","Name 5 fruits in 10 seconds."]
+};
+let lang="hi",questions=[],idx=0,score=0,timerId=null,timeLeft=15,answered=false,player="",roomCode="DB-"+Math.floor(1000+Math.random()*9000),lastScore=0;
+const $=id=>document.getElementById(id);
+function tr(k){return (translations[lang]&&translations[lang][k])||translations.hi[k]||k}
+function setText(id,key){if($(id))$(id).textContent=tr(key)}
+function applyLanguage(){
+ document.documentElement.lang=lang==="as"?"as":lang==="en"?"en":"hi";
+ const map={tagline:"tagline",eyebrow:"eyebrow",heroDesc:"heroDesc",nameLabel:"nameLabel",quickText:"quickText",createText:"createText",modesTitle:"modesTitle",modesSub:"modesSub",quizName:"quizName",quizDesc:"quizDesc",funName:"funName",funDesc:"funDesc",joinName:"joinName",joinDesc:"joinDesc",leaderName:"leaderName",leaderDesc:"leaderDesc",dailyTitle:"dailyTitle",dailyPill:"dailyPill",dailyText:"dailyText",shareDailyText:"shareDailyText",demoNotice:"demoNotice",roomEyebrow:"roomEyebrow",roomTitle:"roomTitle",roomDescText:"roomDescText",copyText:"copyText",shareRoomText:"shareRoomText",joinCodeLabel:"joinCodeLabel",submitJoin:"submitJoin",roomDemoNote:"roomDemoNote",roomStart:"roomStart",quizModeLabel:"quizModeLabel",resultTitle:"resultTitle",resultOf:"resultOf",resultMessage:"resultMessage",shareScoreText:"shareScoreText",againText:"againText",leaderTitle:"leaderTitle",leaderSubtitle:"leaderSubtitle",clearScores:"clearScores",funnyTitle:"funnyTitle",funnySub:"funnySub",newChallengeText:"newChallengeText",shareChallengeText:"shareChallengeText"};
+ for(const [id,key] of Object.entries(map))if($(id))$(id).textContent=tr(key);
+ $("heroTitle").innerHTML=tr("heroTitle");$("playerName").placeholder=tr("namePlaceholder");$("joinCode").placeholder=tr("joinPlaceholder");
+ document.querySelectorAll("[data-i]").forEach(el=>el.textContent=tr(el.dataset.i));
+ if(!$("funny").classList.contains("hidden"))showChallenge();
+}
+function show(which){["home","room","quiz","result","leaderboard","funny"].forEach(id=>$(id).classList.toggle("hidden",id!==which));window.scrollTo({top:0,behavior:"smooth"})}
+function getPlayer(){player=$("playerName").value.trim();if(!player){alert(tr("enterName"));$("playerName").focus();return false}return true}
+function startQuiz(){if(!getPlayer())return;questions=[...bank[lang]].sort(()=>Math.random()-.5);idx=0;score=0;show("quiz");renderQuestion()}
+function renderQuestion(){clearInterval(timerId);answered=false;timeLeft=15;$("timer").textContent=timeLeft;$("feedback").textContent="";$("nextQuestion").classList.add("hidden");const q=questions[idx];$("questionText").textContent=q[0];$("questionCount").textContent=`${tr("question")} ${idx+1}/10`;$("liveScore").textContent=score;$("progressBar").style.width=(idx/10*100)+"%";$("answers").innerHTML="";
+q[1].forEach((a,i)=>{const b=document.createElement("button");b.className="answer";b.innerHTML=`<span class="letter">${["A","B","C","D"][i]}</span><span></span>`;b.lastElementChild.textContent=a;b.onclick=()=>choose(i,b);$("answers").appendChild(b)});
+timerId=setInterval(()=>{timeLeft--;$("timer").textContent=timeLeft;if(timeLeft<=0){clearInterval(timerId);if(!answered){answered=true;$("feedback").textContent=tr("timeup");reveal(-1);$("nextQuestion").classList.remove("hidden")}}},1000)}
+function choose(i,btn){if(answered)return;answered=true;clearInterval(timerId);const correct=questions[idx][2];if(i===correct){score+=10;$("feedback").textContent=tr("correct")}else{$("feedback").textContent=tr("wrong")}reveal(i);$("liveScore").textContent=score;$("nextQuestion").classList.remove("hidden")}
+function reveal(chosen){[...$("answers").children].forEach((b,i)=>{b.disabled=true;if(i===questions[idx][2])b.classList.add("correct");else if(i===chosen)b.classList.add("wrong")});$("progressBar").style.width=((idx+1)/10*100)+"%"}
+$("nextQuestion").onclick=()=>{if(idx<9){idx++;renderQuestion()}else finishQuiz()};
+function finishQuiz(){clearInterval(timerId);lastScore=score;let scores=JSON.parse(localStorage.getItem("dostbattleScores")||"[]");scores.push({name:player,score,when:Date.now()});scores.sort((a,b)=>b.score-a.score);localStorage.setItem("dostbattleScores",JSON.stringify(scores.slice(0,20)));$("finalScore").textContent=score;$("resultMessage").textContent=score>=80?tr("nice"):score>=50?tr("good"):tr("keep");show("result")}
+function room(){if(!getPlayer())return;roomCode="DB-"+Math.floor(1000+Math.random()*9000);$("roomCode").textContent=roomCode;show("room")}
+function shareText(text){if(navigator.share){navigator.share({title:"DostBattle",text}).catch(()=>{})}else if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert(tr("copyDone"))).catch(()=>alert(text))}else alert(text)}
+function showChallenge(){const list=funny[lang]||funny.hi;$("challengeText").textContent=list[Math.floor(Math.random()*list.length)]}
+function showLeaderboard(){const scores=JSON.parse(localStorage.getItem("dostbattleScores")||"[]");$("leaderRows").innerHTML="";if(!scores.length){$("leaderRows").innerHTML=`<p class="muted">${tr("noScore")}</p>`}else scores.slice(0,10).forEach((s,i)=>{const row=document.createElement("div");row.className="rankrow";row.innerHTML=`<span><span class="rank">${i+1}.</span> ${escapeHTML(s.name)}</span><b>${s.score} ⭐</b>`;$("leaderRows").appendChild(row)});show("leaderboard")}
+function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+$("lang").onchange=e=>{lang=e.target.value;applyLanguage()};
+$("quickStart").onclick=startQuiz;$("quizMode").onclick=startQuiz;$("makeRoom").onclick=room;
+$("joinRoom").onclick=()=>{if(!getPlayer())return;roomCode="";$("roomCode").textContent="—";show("room");$("joinCode").focus()};
+$("leaderBtn").onclick=showLeaderboard;$("backRoom").onclick=()=>show("home");$("quitQuiz").onclick=()=>{clearInterval(timerId);show("home")};$("backResult").onclick=()=>show("home");$("backLeader").onclick=()=>show("home");$("backFunny").onclick=()=>show("home");
+$("roomStart").onclick=startQuiz;
+$("copyCode").onclick=()=>shareText(roomCode);
+$("shareRoom").onclick=()=>shareText(`DostBattle room ${roomCode} — mere saath quiz khelo!`);
+$("submitJoin").onclick=()=>{const code=$("joinCode").value.trim().toUpperCase();if(!code){alert(tr("enterCode"));return}roomCode=code;$("roomCode").textContent=roomCode;alert(tr("roomJoined"))};
+$("shareScore").onclick=()=>shareText(`🏆 DostBattle score: ${player} scored ${lastScore}/100! ${lang==="as"?"মোক challenge কৰক!":lang==="en"?"Challenge me!":"Mujhe challenge karo!"}`);
+$("playAgain").onclick=startQuiz;
+$("shareDaily").onclick=()=>shareText($("dailyText").textContent+" — DostBattle");
+$("funMode").onclick=()=>{show("funny");showChallenge()};$("newChallenge").onclick=showChallenge;$("shareChallenge").onclick=()=>shareText($("challengeText").textContent+" — DostBattle");
+$("clearScores").onclick=()=>{localStorage.removeItem("dostbattleScores");showLeaderboard()};
+applyLanguage();
+</script>
+</body>
+</html>
